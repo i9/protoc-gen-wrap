@@ -1,0 +1,22 @@
+syntax = "proto3";
+option go_package = "github.com/i9/protoc-gen-wrap/example";
+
+import "google/protobuf/descriptor.proto";
+
+package example;
+
+extend google.protobuf.MessageOptions {
+  bool insql = 54321;
+}
+
+extend google.protobuf.FieldOptions {
+  string soltype = 54322;
+}
+
+message SomeMsg {
+  option (insql) = true;
+  bytes user = 1 [(soltype) = "address"];
+  bytes amt = 2 [(soltype) = "uint256"];
+  bytes root = 3 [(soltype) = "bytes32"];
+  bytes delta = 4 [(soltype) = "int256"];
+}
